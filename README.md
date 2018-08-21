@@ -1,6 +1,6 @@
 ## Http Client
 
-```
+```bash
 dotnet-script scripts/New.csx
 netstat | grep waws-prod-bay
 
