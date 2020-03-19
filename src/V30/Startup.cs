@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +22,17 @@ namespace V30 {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            services.AddHttpClient();
+            services.AddHttpClient("alfresco", config => {
+                config.BaseAddress = new Uri("http://localhost:8000");
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler {
+                Credentials = new NetworkCredential("admin", "admin")
+            });
+
+            services.AddHttpClient("python", config => {
+
+            });
+
             services.AddControllers();
         }
 

@@ -1,6 +1,5 @@
 ## Client
 
-
 ```bash
 python -m SimpleHTTPServer
 
