@@ -1,12 +1,15 @@
-## Http Client
+## Client
+
 
 ```bash
-dotnet-script scripts/New.csx
-netstat | grep waws-prod-bay
+python -m SimpleHTTPServer
 
-dotnet-script scripts/Share.csx
-netstat | grep waws-prod-bay
+wrk -t2 -d1m https://localhost:5001/api/google/fetch
 
-dotnet run --project src/ClientFactory/ClientFactory.csproj
-netstat | grep waws-prod-bay
+curl -k https://localhost:5001/api/google/go
+curl -k https://localhost:5001/api/google/fetch
+
+curl -k https://localhost:5001/weatherForecast
+
+netstat -na | grep 8000
 ```
