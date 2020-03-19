@@ -17,12 +17,17 @@ namespace V30.Controllers {
         }
 
         [HttpGet]
-        public IActionResult Go() => Ok("go");
+        public async Task<IActionResult> Fetch2() {
+            using var client = new HttpClient();
+            var rs = await client.GetAsync("http://localhost:8000");
+            var content = await rs.Content.ReadAsStringAsync();
+
+            _logger.LogInformation("Length - {0}", content.Length);
+            return Ok();
+        }
 
         [HttpGet]
         public async Task<IActionResult> Fetch() {
-
-
             var client = _fact.CreateClient();
             var rs = await client.GetAsync("http://localhost:8000");
             var content = await rs.Content.ReadAsStringAsync();

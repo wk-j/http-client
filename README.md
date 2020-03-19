@@ -4,12 +4,9 @@
 ```bash
 python -m SimpleHTTPServer
 
-wrk -t2 -d1m https://localhost:5001/api/google/fetch
-
-curl -k https://localhost:5001/api/google/go
-curl -k https://localhost:5001/api/google/fetch
-
-curl -k https://localhost:5001/weatherForecast
+wrk -t2 -d20s https://localhost:5001/api/google/fetch
+wrk -t2 -d20s https://localhost:5001/api/google/fetch2
 
 netstat -na | grep 8000
+netstat -na | grep 8000 | wc -l
 ```
